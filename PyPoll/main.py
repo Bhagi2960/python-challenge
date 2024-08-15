@@ -25,6 +25,7 @@ with open(election_csv, newline='') as csvfile:
     # Read each row of data after the header
     for row in csvreader:
         total_count += 1
+        #If candidate does not exist add candidate and add vote
         if row[2] not in candidatevotes:
             candidatevotes[row[2]] = 1
         else:
@@ -38,13 +39,14 @@ print("-------------------------")
 print("Total Votes: " + str(total_count))
 print("-------------------------")
 
+# Print candidate votes
 for candidate, votes in candidatevotes.items():
     print(candidate + ": " + "{:.3%}".format(votes/total_count) + "   (" +  str(votes) + ")")
     
 print("-------------------------") 
 
 winner = max(candidatevotes, key=candidatevotes.get)
-
+#Print winner
 print(f"Winner: {winner}")
 
 # write to output file
